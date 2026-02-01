@@ -74,7 +74,12 @@ The goal is to convert raw stock market data into **clear, business-ready insigh
 
 ## 📷 Screenshots
 
-> Power BI dashboard previews
+<img width="1372" height="780" alt="image" src="https://github.com/user-attachments/assets/4114ef16-ff5d-460c-9e91-3af1402db9af" />
+<img width="1358" height="770" alt="image" src="https://github.com/user-attachments/assets/7f8132fd-3537-4a32-ae08-b933f46a3af2" />
+<img width="1359" height="770" alt="image" src="https://github.com/user-attachments/assets/bd571ba5-0b91-46a5-9744-99ca3c359d8e" />
+
+
+
 
 
 
