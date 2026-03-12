@@ -1,76 +1,97 @@
-# 📈 Capital Insights – Stock Market Analysis Platform
+# 📈 Capital Insights – AI-Powered Stock Market Analysis Platform
 
-Capital Insights is an **end-to-end stock market analytics project** that focuses on collecting, processing, analyzing, and visualizing large-scale historical stock market data.  
-The project simulates a **real-world financial data analytics pipeline** using Python, SQL Server, and Power BI to generate actionable investment insights.
+Capital Insights is an **end-to-end stock market analytics and AI-driven insight generation platform** that focuses on collecting, processing, analyzing, and visualizing large-scale historical stock market data.
+The project simulates a **real-world financial data analytics pipeline enhanced with AI**, where historical market data stored in SQL Server is automatically analyzed using **LLM APIs (Gemini)** to generate market insights.
 
 <img width="1350" height="755" alt="image" src="https://github.com/user-attachments/assets/1fb2f67c-4881-4963-bff5-7fb6bef5e863" />
 
 
-## 🧠 Project Overview
+# 🧠 Project Overview
 
-This project demonstrates how financial data is handled in real analytics teams:
-- Automated data ingestion from APIs
-- Data cleaning and preprocessing
-- Optimized database design
-- Interactive dashboard development
-- Performance tuning and insight generation
+This project demonstrates how financial data is handled in modern analytics teams by combining **data engineering, business intelligence, and AI-powered analysis**.
 
-The goal is to convert raw stock market data into **clear, business-ready insights**.
+The platform includes:
+
+- Automated data ingestion from APIs  
+- Data preprocessing and transformation  
+- Optimized database design  
+- AI-powered stock insight generation  
+- Interactive dashboard development  
+
+The goal is to convert raw stock market data into **automated insights and business-ready analytics**.
 
 
 
-## 🎯 Objectives
+# 🎯 Objectives
+
 - Analyze historical stock price and volume data  
 - Track returns, percentage changes, and moving averages  
 - Compare stock performance across multiple time frames  
-- Build an optimized and scalable analytics solution  
+- Generate **AI-powered market insights using LLM APIs**  
+- Build a scalable analytics and AI-assisted analysis system  
 
 
+# 🛠️ Tech Stack
 
-## 🛠️ Tech Stack
-- **Python** – Data ingestion, automation, preprocessing  
+- **Python** – Data ingestion, automation, AI workflow  
 - **Yahoo Finance API** – Stock market data source  
-- **SQL Server** – Data storage, indexing, optimization  
+- **SQL Server** – Data storage and optimization  
 - **Power BI** – Interactive dashboards and reporting  
+- **Streamlit** – Web interface for AI stock analysis  
+- **LLM APIs (Google Gemini)** – AI-driven financial insight generation  
 - **DAX** – Financial calculations and measures  
 - **Excel** – Data validation  
 - **Git & GitHub** – Version control  
 
 
+# 📊 Dataset Details
 
-## 📊 Dataset Details
 - Processed **2M+ OHLCV (Open, High, Low, Close, Volume) records**
 - Covers multiple stocks with historical data
 - Supports **daily incremental data refresh**
 - Designed to avoid redundant data loads
+- Enables **AI-based analysis of historical market patterns**
 
 
 
-## 🔄 Data Pipeline Architecture
+# 🔄 Data Pipeline Architecture
 
-1. Fetch historical stock data using **Yahoo Finance API**
-2. Clean and preprocess data using **Python**
-3. Store structured data in **SQL Server**
-4. Apply **SQL indexing** on key columns (`Symbol`, `TradeDate`)
-5. Load optimized data into **Power BI**
-6. Create dashboards using **DAX measures**
-
-
-
-## 📊 Core Features
-- ✔️ Historical stock price trend charts  
-- ✔️ Volume & return analysis  
-- ✔️ Time-frame selection filters (5D, 1M, YTD)  
-- ✔️ Efficient incremental data loading  
-- ✔️ Performance optimization with SQL indexing  
+1. Fetch historical stock data using **Yahoo Finance API**  
+2. Clean and preprocess data using **Python**  
+3. Store structured data in **SQL Server**  
+4. Apply **SQL indexing** on key columns (`Symbol`, `TradeDate`)  
+5. Load optimized data into **Power BI dashboards**  
+6. Build **Streamlit-based AI interface for stock analysis**  
+7. Generate automated market insights using **LLM APIs (Gemini)**  
 
 
 
-## 📈 Insights & Results
-- ✔️ Processed **2M+ OHLCV records**
-- ✔️ Improved dashboard load time using SQL indexing
-- ✔️ Generated insights on stock returns and volume trends
-- ✔️ Identified clear price movement patterns across time ranges
+# 🤖 AI-Powered Stock Analysis
+
+A Python-based AI workflow allows users to select a stock symbol and automatically generate financial insights using **prompt engineering and LLM APIs**.
+
+
+
+# 📊 Core Features
+
+✔ Historical stock price trend charts  
+✔ Volume & return analysis  
+✔ Time-frame filters (5D, 1M, YTD)  
+✔ AI-generated market insights  
+✔ Streamlit-based interactive stock analysis interface  
+✔ Efficient incremental data loading  
+✔ Performance optimization with SQL indexing  
+
+
+
+# 📈 Insights & Results
+
+✔ Processed **2M+ OHLCV records**  
+✔ Reduced dashboard load time using **SQL indexing optimization**  
+✔ Generated automated **AI-based market insights**  
+✔ Identified clear price movement patterns across multiple time ranges  
+
+
 
 ## 📷 Screenshots
 
