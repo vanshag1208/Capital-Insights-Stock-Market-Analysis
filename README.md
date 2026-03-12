@@ -72,8 +72,7 @@ A Python-based AI workflow allows users to select a stock symbol and automatical
 
 <img width="1420" height="756" alt="image" src="https://github.com/user-attachments/assets/571e9dfa-2a42-4e81-90b0-b0c26d2a9955" />
 
-<img width="2479" height="1217" alt="image" src="https://github.com/user-attachments/assets/c83fcc59-a8e9-4e6b-b78a-d325fa47ccd1" />
-
+<img width="763" height="1061" alt="image" src="https://github.com/user-attachments/assets/be29a383-6ac5-4f19-9f32-799f5d9cf312" />
 
 <img width="2487" height="914" alt="image" src="https://github.com/user-attachments/assets/cb9a2356-1401-4ffe-bc0d-ef1913457eac" />
 
