@@ -70,6 +70,7 @@ The goal is to convert raw stock market data into **automated insights and busin
 
 A Python-based AI workflow allows users to select a stock symbol and automatically generate financial insights using **prompt engineering and LLM APIs**.
 
+<img width="2487" height="914" alt="image" src="https://github.com/user-attachments/assets/cb9a2356-1401-4ffe-bc0d-ef1913457eac" />
 
 
 # 📊 Core Features
