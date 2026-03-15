@@ -12,9 +12,10 @@ from dotenv import load_dotenv
 load_dotenv()
  
 DB_DRIVER = os.getenv("DB_DRIVER")
-SQL_SERVER = os.getenv("SQL_SERVER")
-SQL_DATABASE = os.getenv("SQL_DATABASE")
-
+DB_SERVER = os.getenv("DB_SERVER")
+DB_DATABASE = os.getenv("DB_DATABASE")
+DB_UID = os.getenv("DB_UID")
+DB_PWD = os.getenv("DB_PWD")
 
 # ===============================
 # 1️⃣ READ MASTER CSV
@@ -22,14 +23,18 @@ SQL_DATABASE = os.getenv("SQL_DATABASE")
 master = pd.read_csv("stock_master_full.csv")
 yf_symbols = master["YF_SYMBOL"].dropna().tolist()
 
-# ---------------------------
-# 2. SQL Server Connection
-# ---------------------------
+# ===============================
+# 2️⃣ SQL CONNECTION
+# ===============================
 conn = pyodbc.connect(
     f"DRIVER={{{DB_DRIVER}}};"
-    f"SERVER={SQL_SERVER};"
-    f"DATABASE={SQL_DATABASE};"
-    f"Trusted_Connection=yes;"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_UID};"
+    f"PWD={DB_PWD};"
+    "Encrypt=yes;"
+    "TrustServerCertificate=no;"
+    "Connection Timeout=30;"
 )
 
 cursor = conn.cursor()

@@ -1,7 +1,6 @@
 import pandas as pd
 import yfinance as yf
 import pyodbc
-from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 
@@ -12,28 +11,33 @@ from dotenv import load_dotenv
 load_dotenv()
  
 DB_DRIVER = os.getenv("DB_DRIVER")
-SQL_SERVER = os.getenv("SQL_SERVER")
-SQL_DATABASE = os.getenv("SQL_DATABASE")
-
+DB_SERVER = os.getenv("DB_SERVER")
+DB_DATABASE = os.getenv("DB_DATABASE")
+DB_UID = os.getenv("DB_UID")
+DB_PWD = os.getenv("DB_PWD")
 
 # ===============================
-# 1️⃣ READ MASTER CSV
+# 1️⃣ READ CSV
 # ===============================
 master = pd.read_csv("stock_master_full.csv")
 yf_symbols = master["YF_SYMBOL"].dropna().tolist()
 
-# ---------------------------
-# 2. SQL Server Connection
-# ---------------------------
+# ===============================
+# 2️⃣ AZURE SQL CONNECTION
+# ===============================
 conn = pyodbc.connect(
     f"DRIVER={{{DB_DRIVER}}};"
-    f"SERVER={SQL_SERVER};"
-    f"DATABASE={SQL_DATABASE};"
-    f"Trusted_Connection=yes;"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_UID};"
+    f"PWD={DB_PWD};"
+    "Encrypt=yes;"
+    "TrustServerCertificate=no;"
+    "Connection Timeout=30;"
 )
 
 cursor = conn.cursor()
-
+cursor.fast_executemany = True
 
 # ===============================
 # 3️⃣ INSERT QUERY
@@ -44,11 +48,11 @@ INSERT INTO StockPriceDaily
 VALUES (?,?,?,?,?,?,?,?)
 """
 
-
 # ===============================
-# 4️⃣ FETCH + INSERT (POSITION BASED)
+# 4️⃣ FETCH + BULK INSERT
 # ===============================
 for yf_sym in yf_symbols:
+
     print("Fetching:", yf_sym)
 
     data = yf.download(
@@ -62,37 +66,31 @@ for yf_sym in yf_symbols:
         print("No data:", yf_sym)
         continue
 
-    # Date index → column
     data.reset_index(inplace=True)
 
-    # Add Symbol column at the END
-    symbol_value = yf_sym.replace(".NS", "")
-    data["Symbol"] = symbol_value
+    symbol = yf_sym.replace(".NS", "")
+    data["Symbol"] = symbol
 
-    # Columns order will be:
-    # 0 Date | 1 Open | 2 High | 3 Low | 4 Close | 5 Adj Close | 6 Volume | 7 Symbol
+    rows = []
 
     for row in data.itertuples(index=False):
-        cursor.execute(
-            insert_sql,
-            row[0],        # Date
-            row[7],        # Symbol  ✅ FIXED
-            float(row[1]), # Open
-            float(row[2]), # High
-            float(row[3]), # Low
-            float(row[4]), # Close
-            float(row[5]), # Adj Close
-            int(row[6])    # Volume
-        )
+        rows.append((
+            row[0],              # TradeDate
+            row[7],              # Symbol
+            float(row[1]),       # Open
+            float(row[2]),       # High
+            float(row[3]),       # Low
+            float(row[4]),       # Close
+            float(row[5]),       # Adj Close
+            int(row[6])          # Volume
+        ))
 
+    cursor.executemany(insert_sql, rows)
     conn.commit()
+
     print("Inserted:", yf_sym)
 
-
-# ===============================
-# 5️⃣ CLOSE CONNECTION
-# ===============================
 cursor.close()
 conn.close()
 
-print("✅ ALL DONE SUCCESSFULLY")
+print("✅ ALL DONE")

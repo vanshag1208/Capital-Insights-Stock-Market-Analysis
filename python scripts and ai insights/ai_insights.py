@@ -1,20 +1,36 @@
+import os
 import pyodbc
 import pandas as pd
+from dotenv import load_dotenv
 from google import genai
+
+
+# ---------------------------
+# Load environment variables
+# ---------------------------
+load_dotenv()
+ 
+DB_DRIVER = os.getenv("DB_DRIVER")
+SQL_SERVER = os.getenv("SQL_SERVER")
+SQL_DATABASE = os.getenv("SQL_DATABASE")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
 
 # ---------------------------
 # 1. Gemini Client
 # ---------------------------
-client = genai.Client(api_key="YOUR_API_KEY_HERE")
+
+client = genai.Client(api_key=GEMINI_API_KEY)
+
 
 # ---------------------------
 # 2. SQL Server Connection
 # ---------------------------
 conn = pyodbc.connect(
-    r"DRIVER={ODBC Driver 17 for SQL Server};"
-    r"SERVER=VANSHPC\SQLEXPRESS02;"
-    r"DATABASE=StockMarket;"
-    r"Trusted_Connection=yes;"
+    f"DRIVER={{{DB_DRIVER}}};"
+    f"SERVER={SQL_SERVER};"
+    f"DATABASE={SQL_DATABASE};"
+    f"Trusted_Connection=yes;"
 )
 
 cursor = conn.cursor()

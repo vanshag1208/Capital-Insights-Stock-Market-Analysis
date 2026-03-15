@@ -1,10 +1,9 @@
+import os
 import streamlit as st
 import pyodbc
 import pandas as pd
-from google import genai
-import os
 from dotenv import load_dotenv
-
+from google import genai
 
 # ---------------------------
 # Load environment variables
@@ -12,8 +11,10 @@ from dotenv import load_dotenv
 load_dotenv()
  
 DB_DRIVER = os.getenv("DB_DRIVER")
-SQL_SERVER = os.getenv("SQL_SERVER")
-SQL_DATABASE = os.getenv("SQL_DATABASE")
+DB_SERVER = os.getenv("DB_SERVER")
+DB_DATABASE = os.getenv("DB_DATABASE")
+DB_UID = os.getenv("DB_UID")
+DB_PWD = os.getenv("DB_PWD")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
@@ -23,18 +24,20 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-
 # ---------------------------
 # 2. SQL Server Connection
 # ---------------------------
+
 conn = pyodbc.connect(
     f"DRIVER={{{DB_DRIVER}}};"
-    f"SERVER={SQL_SERVER};"
-    f"DATABASE={SQL_DATABASE};"
-    f"Trusted_Connection=yes;"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_UID};"
+    f"PWD={DB_PWD};"
+    "Encrypt=yes;"
+    "TrustServerCertificate=no;"
+    "Connection Timeout=30;"
 )
-
-
 cursor = conn.cursor()
 
 st.title("AI Stock Market Analyzer")
